@@ -1,0 +1,137 @@
+:root {
+    --score-text: #2a46c0;
+    --body: #111720;
+    --primary-yellow: #fac650;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--body);
+    font-family: sans-serif;
+}
+
+header {
+    background-color: #4b0082;
+    display: flex;
+    padding: 1.2rem;
+    justify-content: space-between;
+}
+
+.title p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.8rem;
+    color: var(--primary-yellow);
+    line-height: 1.2;
+}
+
+.div-score {
+    background-color: var(--primary-yellow);
+    width: 25%;
+    max-width: 150px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 2px 5px 7px rgba(0, 0, 0, 0.43);
+    border-radius: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.div-score-p {
+    color: var(--dark-text);
+    font-weight: 700;
+}
+
+.score {
+    color: var(--score-text);
+    font-weight: 800;
+    margin-top: 0.5rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+.result-container {
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.result {
+    text-align: center;
+    margin: 1rem;
+    font-size: 1.8rem;
+}
+
+.result-text {
+    font-size: 1.2rem;
+}
+
+.computer-election {
+    width: 40%;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.election {
+    background-image: url(images/5a461418d099a2ad03f9c999.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 1rem auto;
+    height: 90px;
+}
+
+.container-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    min-width: fit-content;
+    width: 70%;
+    height: 9rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.rock,
+.paper,
+.scissors {
+    background-color: #fac650;
+    min-width: fit-content;
+    width: 30%;
+    height: 120px;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+}
+
+.rock {
+    background-color: #dc2e4e;
+}
+
+.rock:hover {
+    background-color: #dd405d;
+}
+
+.paper {
+    background-color: #4865f4;
+}
+
+.paper:hover {
+    background-color: #5671f5;
+}
+
+.scissors {
+    background-color: #ed9f0c;
+}
+
+.scissors:hover {
+    background-color: #eca922;
+}
