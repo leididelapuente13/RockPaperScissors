@@ -29,23 +29,47 @@ function computerChoice() {
 }
 
 let userChoice = null;
+let uScore = 0;
+let cScore = 0;
 
-botones.forEach(function(boton) {
-    boton.addEventListener("click", function(event) {
+
+botones.forEach(function (boton) {
+    boton.addEventListener("click", function (event) {
         userChoice = event.target.value;
-        console.log(userChoice);
+        console.log("Elección del usuario: " + userChoice);
         let comptChoice = computerChoice();
-        console.log(partida(userChoice, comptChoice));
+        let result = partida(userChoice, comptChoice);
+        console.log("Resultado: " + result);
+        if (result.includes("you have won")) {
+            uScore++;
+            if (uScore === 5 || cScore === 5) {
+                uScore = 0;
+                cScore = 0;
+            }
+            compScore.innerHTML = cScore;
+            totalScore.innerHTML = uScore;
+        } else if (result.includes("you have lost")) {
+            cScore++;
+            if (uScore === 5 || cScore === 5) {
+                uScore = 0;
+                cScore = 0;
+            }
+            compScore.innerHTML = cScore;
+            totalScore.innerHTML = uScore;
+        } else {
+            contComputerCh.style.backgroundColor = "#111720";
+            computerCh.style.backgroundImage = "url(images/question.png)";
+
+        }
     });
 });
 
-computerChoice();
 
 
-function partida(userChoice, pcChoice){
-    if(userChoice === pcChoice){
+function partida(userChoice, pcChoice) {
+    if (userChoice === pcChoice) {
         return "Empate";
-    }else if (userChoice === "paper" && pcChoice === "scissors" || userChoice === "scissors" && pcChoice === "rock" || userChoice === "rock" && pcChoice === "paper") {
+    } else if (userChoice === "paper" && pcChoice === "scissors" || userChoice === "scissors" && pcChoice === "rock" || userChoice === "rock" && pcChoice === "paper") {
         return "you have lost " + pcChoice + " beats " + userChoice;
     } else if (pcChoice === "paper" && userChoice === "scissors" || pcChoice === "scissors" && userChoice === "rock" || pcChoice === "rock" && userChoice === "paper") {
         return "you have won " + userChoice + " beats " + pcChoice;
@@ -53,7 +77,7 @@ function partida(userChoice, pcChoice){
 }
 
 
-//computerCh.style.backgroundImage = "url(images/question.png)";
+
 
 
 
