@@ -1,48 +1,60 @@
+let totalScore = document.querySelector(".score");
+let userCh = document.querySelector(".result");
+let resultChoice = document.querySelector(".result-text");
+let computerCh = document.querySelector(".election");
+let compScore = document.querySelector(".computer-score");
+let btnRock = document.querySelector(".rock");
+let btnPaper = document.querySelector(".paper");
+let btnScissors = document.querySelector(".scissors");
+let contComputerCh = document.querySelector(".election");
+let botones = document.querySelectorAll("button");
+
 function computerChoice() {
     const opciones = ["rock", "paper", "scissors"];
     let a = Math.floor(Math.random() * 3);
     let choice = opciones[a];
+
+    if (choice === "rock") {
+        contComputerCh.style.backgroundColor = "#dc2e4e";
+        computerCh.style.backgroundImage = "url(images/rock.png)";
+    } else if (choice === "scissors") {
+        contComputerCh.style.backgroundColor = "#4865f4";
+        computerCh.style.backgroundImage = "url(images/scissors.png)";
+    } else {
+        contComputerCh.style.backgroundColor = "#ed9f0c";
+        computerCh.style.backgroundImage = "url(images/paper.png)";
+    }
+
     return choice;
 }
 
-function partida(pcChoice, userChoice) {
-    userChoice = userChoice.toLowerCase();
-    pcChoice = pcChoice.toLowerCase();
+let userChoice = null;
 
-    if (pcChoice === userChoice) {
-        return "Tie! both choose " + userChoice;
-    } else if (userChoice === "paper" && pcChoice === "scissors" || userChoice === "scissors" && pcChoice === "rock" || userChoice === "rock" && pcChoice === "paper") {
+botones.forEach(function(boton) {
+    boton.addEventListener("click", function(event) {
+        userChoice = event.target.value;
+        console.log(userChoice);
+        let comptChoice = computerChoice();
+        console.log(partida(userChoice, comptChoice));
+    });
+});
+
+computerChoice();
+
+
+function partida(userChoice, pcChoice){
+    if(userChoice === pcChoice){
+        return "Empate";
+    }else if (userChoice === "paper" && pcChoice === "scissors" || userChoice === "scissors" && pcChoice === "rock" || userChoice === "rock" && pcChoice === "paper") {
         return "you have lost " + pcChoice + " beats " + userChoice;
     } else if (pcChoice === "paper" && userChoice === "scissors" || pcChoice === "scissors" && userChoice === "rock" || pcChoice === "rock" && userChoice === "paper") {
         return "you have won " + userChoice + " beats " + pcChoice;
-    } else {
-        return `${userChoice} is not a valid option`;
     }
 }
 
-let comptChoice = computerChoice();
 
-function game() {
-    let uScore = 0;
-    let cScore = 0;
-    for (let i = 0; i < 3; i++) {
-        let userChoice = prompt("ingrese su opcion Rock, papaer o Scissors");
-        let cont = partida(comptChoice, userChoice);
-        alert(cont);
-        if (cont.includes("you have won")) {
-            uScore++;
-        } else if (cont.includes("you have lost")) {
-            cScore++;
-        }
-    }
+//computerCh.style.backgroundImage = "url(images/question.png)";
 
-    if (uScore == cScore) {
-        alert(`Empate your score ${uScore} computer scrore ${cScore}`);
-    } else if (uScore > cScore) {
-        alert(`you have won ${uScore} againts ${cScore}`);
-    } else if (uScore < cScore) {
-        alert(`you have lost ${uScore} againts ${cScore}`);
-    }
-}
 
-game();
+
+
