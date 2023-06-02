@@ -9,6 +9,12 @@ let btnScissors = document.querySelector(".scissors");
 let contComputerCh = document.querySelector(".election");
 let botones = document.querySelectorAll("button");
 
+const click = new Audio("audio/click.mp3");
+const gameOver = new Audio("audio/gameOver.mp3");
+const victory = new Audio("audio/victory.mp3");
+const goodChoice = new Audio("audio/goodChoice.mp3");
+const badChoice = new Audio("audio/computer.mp3");
+
 function computerChoice() {
     const opciones = ["rock", "paper", "scissors"];
     let a = Math.floor(Math.random() * 3);
@@ -32,14 +38,17 @@ function computerChoice() {
 
 function partida(userChoice, pcChoice) {
     if (userChoice === pcChoice) {
+        click.play();
         gameResult.innerHTML = "Tie!"
         resultChoice.innerHTML = `Both chose ${userChoice}`;
         return "Empate";
     } else if (userChoice === "paper" && pcChoice === "scissors" || userChoice === "scissors" && pcChoice === "rock" || userChoice === "rock" && pcChoice === "paper") {
+        badChoice.play();
         gameResult.innerHTML = "You have lost!"
         resultChoice.innerHTML = ` ${pcChoice} beats ${userChoice}`;
         return "you have lost " + pcChoice + " beats " + userChoice;
     } else if (pcChoice === "paper" && userChoice === "scissors" || pcChoice === "scissors" && userChoice === "rock" || pcChoice === "rock" && userChoice === "paper") {
+        goodChoice.play();
         gameResult.innerHTML = "you have won!"
         resultChoice.innerHTML = `${userChoice} beats ${pcChoice}`;
         return "you have won " + userChoice + " beats " + pcChoice;
@@ -60,6 +69,7 @@ botones.forEach(function (boton) {
         if (result.includes("you have won")) {
             uScore++;
             if (uScore === 5 || cScore === 5) {
+                victory.play();
                 contComputerCh.style.backgroundColor = "#111720";
                 contComputerCh.style.backgroundImage = "url(images/WinGame.jpg)";
                 uScore = 0;
@@ -70,6 +80,7 @@ botones.forEach(function (boton) {
         } else if (result.includes("you have lost")) {
             cScore++;
             if (cScore === 5 || uScore === 5) {
+                gameOver.play();
                 contComputerCh.style.backgroundColor = "#111720";
                 contComputerCh.style.backgroundImage = "url(images/GameOver.jpg)";
                 uScore = 0;
@@ -80,7 +91,6 @@ botones.forEach(function (boton) {
         } else {
             contComputerCh.style.backgroundColor = "#111720";
             computerCh.style.backgroundImage = "url(images/question.png)";
-
         }
     });
 });
