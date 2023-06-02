@@ -8,12 +8,13 @@ let btnPaper = document.querySelector(".paper");
 let btnScissors = document.querySelector(".scissors");
 let contComputerCh = document.querySelector(".election");
 let botones = document.querySelectorAll("button");
-
+let resulContainer = document.querySelector(".invisible");
 function computerChoice() {
     const opciones = ["rock", "paper", "scissors"];
     let a = Math.floor(Math.random() * 3);
     let choice = opciones[a];
-
+    //transicion para mostrar eleccion del computador
+    contComputerCh.classList.add("bg");
     if (choice === "rock") {
         contComputerCh.style.backgroundColor = "#dc2e4e";
         computerCh.style.backgroundImage = "url(images/rock.png)";
@@ -42,16 +43,16 @@ botones.forEach(function (boton) {
         console.log("Resultado: " + result);
         if (result.includes("you have won")) {
             uScore++;
-            if (uScore === 5 || cScore === 5) {
+            if (uScore ===5) {
                 uScore = 0;
                 cScore = 0;
-                
             }
             compScore.innerHTML = cScore;
             totalScore.innerHTML = uScore;
         } else if (result.includes("you have lost")) {
             cScore++;
-            if (uScore === 5 || cScore === 5) {
+            if (cScore === 5) {
+
                 uScore = 0;
                 cScore = 0;
             }
@@ -77,7 +78,7 @@ function partida(userChoice, pcChoice) {
         resultChoice.innerHTML = ` ${pcChoice} beats ${userChoice}`;
         return "you have lost " + pcChoice + " beats " + userChoice;
     } else if (pcChoice === "paper" && userChoice === "scissors" || pcChoice === "scissors" && userChoice === "rock" || pcChoice === "rock" && userChoice === "paper") {
-        gameResult.innerHTML = "You have won!"
+        gameResult.innerHTML = "you have won!"
         resultChoice.innerHTML = `${userChoice} beats ${pcChoice}`;
         return "you have won " + userChoice + " beats " + pcChoice;
     }
