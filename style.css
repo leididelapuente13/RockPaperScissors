@@ -1,0 +1,165 @@
+:root {
+    --score-text: #2a46c0;
+    --body: #111720;
+    --primary-yellow: #fac650;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--body);
+    font-family: sans-serif;
+}
+
+header {
+    background-color: #4b0082;
+    display: flex;
+    padding: 1.2rem;
+    justify-content: space-between;
+}
+
+.title p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.8rem;
+    color: var(--primary-yellow);
+    line-height: 1.2;
+}
+
+.div-score {
+    background-color: var(--primary-yellow);
+    width: 25%;
+    max-width: 150px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 2px 5px 7px rgba(0, 0, 0, 0.43);
+    border-radius: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.div-score-p {
+    color: var(--dark-text);
+    font-weight: 700;
+}
+
+.score {
+    color: var(--score-text);
+    font-weight: 800;
+    margin-top: 0.5rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    padding-bottom: 1rem;
+}
+
+.result-container {
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.result {
+    text-align: center;
+    margin: 1rem;
+    font-size: 1.8rem;
+}
+
+.result-text{
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.computer-election {
+    min-width: fit-content;
+    width: 40%;
+    max-width: 200px;
+    padding: 0.5rem;
+}
+
+
+.computer-election p{
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.election {
+    background-image: url(images/question.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    margin: 1rem auto;
+    height: 130px;
+    border-radius: 0.3rem;
+}
+
+.container-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    min-width: fit-content;
+    width: 70%;
+    height: 9rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.rock,
+.paper,
+.scissors {
+    background-color: #fac650;
+    min-width: fit-content;
+    width: 30%;
+    height: 120px;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+}
+
+button{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.rock {
+    background-image: url(images/rock.png);
+    background-color: #dc2e4e;
+    box-shadow: #dd405d 0px 2px 8px 0px;
+}
+
+.rock:hover {
+    background-color: #dd405d;
+}
+
+.paper {
+    background-image: url(images/paper.png);
+    background-color: #4865f4;
+    box-shadow: #5671f5 0px 2px 8px 0px;
+}
+
+.paper:hover {
+    background-color: #5671f5;
+}
+
+.scissors {
+    background-image: url(images/scissors.png);
+    background-color: #ed9f0c;
+    box-shadow: #eca922 0px 2px 8px 0px;
+}
+
+.scissors:hover {
+    background-color: #eca922;
+}
+
+.bg{
+    transition: background 0.9s ease;
+}

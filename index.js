@@ -1,48 +1,90 @@
+let totalScore = document.querySelector(".score");
+let gameResult = document.querySelector(".result");
+let resultChoice = document.querySelector(".result-text");
+let computerCh = document.querySelector(".election");
+let compScore = document.querySelector(".computer-score");
+let btnRock = document.querySelector(".rock");
+let btnPaper = document.querySelector(".paper");
+let btnScissors = document.querySelector(".scissors");
+let contComputerCh = document.querySelector(".election");
+let botones = document.querySelectorAll("button");
+
 function computerChoice() {
     const opciones = ["rock", "paper", "scissors"];
     let a = Math.floor(Math.random() * 3);
     let choice = opciones[a];
+    //transicion para mostrar eleccion del computador
+    contComputerCh.classList.add("bg");
+    if (choice === "rock") {
+        contComputerCh.style.backgroundColor = "#dc2e4e";
+        computerCh.style.backgroundImage = "url(images/rock.png)";
+    } else if (choice === "scissors") {
+        contComputerCh.style.backgroundColor = "#4865f4";
+        computerCh.style.backgroundImage = "url(images/scissors.png)";
+    } else {
+        contComputerCh.style.backgroundColor = "#ed9f0c";
+        computerCh.style.backgroundImage = "url(images/paper.png)";
+    }
+
     return choice;
 }
 
-function partida(pcChoice, userChoice) {
-    userChoice = userChoice.toLowerCase();
-    pcChoice = pcChoice.toLowerCase();
 
-    if (pcChoice === userChoice) {
-        return "Tie! both choose " + userChoice;
+function partida(userChoice, pcChoice) {
+    if (userChoice === pcChoice) {
+        gameResult.innerHTML = "Tie!"
+        resultChoice.innerHTML = `Both chose ${userChoice}`;
+        return "Empate";
     } else if (userChoice === "paper" && pcChoice === "scissors" || userChoice === "scissors" && pcChoice === "rock" || userChoice === "rock" && pcChoice === "paper") {
+        gameResult.innerHTML = "You have lost!"
+        resultChoice.innerHTML = ` ${pcChoice} beats ${userChoice}`;
         return "you have lost " + pcChoice + " beats " + userChoice;
     } else if (pcChoice === "paper" && userChoice === "scissors" || pcChoice === "scissors" && userChoice === "rock" || pcChoice === "rock" && userChoice === "paper") {
+        gameResult.innerHTML = "you have won!"
+        resultChoice.innerHTML = `${userChoice} beats ${pcChoice}`;
         return "you have won " + userChoice + " beats " + pcChoice;
-    } else {
-        return `${userChoice} is not a valid option`;
     }
 }
 
-let comptChoice = computerChoice();
 
-function game() {
-    let uScore = 0;
-    let cScore = 0;
-    for (let i = 0; i < 3; i++) {
-        let userChoice = prompt("ingrese su opcion Rock, papaer o Scissors");
-        let cont = partida(comptChoice, userChoice);
-        alert(cont);
-        if (cont.includes("you have won")) {
+let userChoice = null;
+let uScore = 0;
+let cScore = 0;
+
+botones.forEach(function (boton) {
+    boton.addEventListener("click", function (event) {
+        userChoice = event.target.value;
+        console.log("Elección del usuario: " + userChoice);
+        let comptChoice = computerChoice();
+        let result = partida(userChoice, comptChoice);
+        if (result.includes("you have won")) {
             uScore++;
-        } else if (cont.includes("you have lost")) {
+            if (uScore === 5 || cScore === 5) {
+                contComputerCh.style.backgroundColor = "#111720";
+                contComputerCh.style.backgroundImage = "url(images/WinGame.jpg)";
+                uScore = 0;
+                cScore = 0;
+            }
+            compScore.innerHTML = cScore;
+            totalScore.innerHTML = uScore;
+        } else if (result.includes("you have lost")) {
             cScore++;
+            if (cScore === 5 || uScore === 5) {
+                contComputerCh.style.backgroundColor = "#111720";
+                contComputerCh.style.backgroundImage = "url(images/GameOver.jpg)";
+                uScore = 0;
+                cScore = 0;
+            }
+            compScore.innerHTML = cScore;
+            totalScore.innerHTML = uScore;
+        } else {
+            contComputerCh.style.backgroundColor = "#111720";
+            computerCh.style.backgroundImage = "url(images/question.png)";
+
         }
-    }
+    });
+});
 
-    if (uScore == cScore) {
-        alert(`Empate your score ${uScore} computer scrore ${cScore}`);
-    } else if (uScore > cScore) {
-        alert(`you have won ${uScore} againts ${cScore}`);
-    } else if (uScore < cScore) {
-        alert(`you have lost ${uScore} againts ${cScore}`);
-    }
-}
 
-game();
+
+
