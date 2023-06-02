@@ -160,36 +160,6 @@ button{
     background-color: #eca922;
 }
 
-.invisible{
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.table-results{
-    background-color: #eca922;
-    width: 50%;
-    max-width: 420px;
-    height: 220px;
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    left: 50%;
-    border-radius: 0.3rem;
-    padding: 1.2rem;
-    transform: translate(-50%, -50%);
-}
-
-
-.table-results h1{
-    text-align: center;
-}
-
-.table-results p{
-    margin-top: 1rem;
-    font-size: 1.5rem;
-}
-
 .bg{
-    transition: background 0.5s ease-in-out 0.2s;
+    transition: background 0.9s ease;
 }

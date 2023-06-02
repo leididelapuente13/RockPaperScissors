@@ -8,7 +8,7 @@ let btnPaper = document.querySelector(".paper");
 let btnScissors = document.querySelector(".scissors");
 let contComputerCh = document.querySelector(".election");
 let botones = document.querySelectorAll("button");
-let resulContainer = document.querySelector(".invisible");
+
 function computerChoice() {
     const opciones = ["rock", "paper", "scissors"];
     let a = Math.floor(Math.random() * 3);
@@ -29,44 +29,6 @@ function computerChoice() {
     return choice;
 }
 
-let userChoice = null;
-let uScore = 0;
-let cScore = 0;
-
-
-botones.forEach(function (boton) {
-    boton.addEventListener("click", function (event) {
-        userChoice = event.target.value;
-        console.log("Elección del usuario: " + userChoice);
-        let comptChoice = computerChoice();
-        let result = partida(userChoice, comptChoice);
-        console.log("Resultado: " + result);
-        if (result.includes("you have won")) {
-            uScore++;
-            if (uScore ===5) {
-                uScore = 0;
-                cScore = 0;
-            }
-            compScore.innerHTML = cScore;
-            totalScore.innerHTML = uScore;
-        } else if (result.includes("you have lost")) {
-            cScore++;
-            if (cScore === 5) {
-
-                uScore = 0;
-                cScore = 0;
-            }
-            compScore.innerHTML = cScore;
-            totalScore.innerHTML = uScore;
-        } else {
-            contComputerCh.style.backgroundColor = "#111720";
-            computerCh.style.backgroundImage = "url(images/question.png)";
-
-        }
-    });
-});
-
-
 
 function partida(userChoice, pcChoice) {
     if (userChoice === pcChoice) {
@@ -85,7 +47,43 @@ function partida(userChoice, pcChoice) {
 }
 
 
+let userChoice = null;
+let uScore = 0;
+let cScore = 0;
 
+botones.forEach(function (boton) {
+    boton.addEventListener("click", function (event) {
+        userChoice = event.target.value;
+        console.log("Elección del usuario: " + userChoice);
+        let comptChoice = computerChoice();
+        let result = partida(userChoice, comptChoice);
+        if (result.includes("you have won")) {
+            uScore++;
+            if (uScore === 5 || cScore === 5) {
+                contComputerCh.style.backgroundColor = "#111720";
+                contComputerCh.style.backgroundImage = "url(images/WinGame.jpg)";
+                uScore = 0;
+                cScore = 0;
+            }
+            compScore.innerHTML = cScore;
+            totalScore.innerHTML = uScore;
+        } else if (result.includes("you have lost")) {
+            cScore++;
+            if (cScore === 5 || uScore === 5) {
+                contComputerCh.style.backgroundColor = "#111720";
+                contComputerCh.style.backgroundImage = "url(images/GameOver.jpg)";
+                uScore = 0;
+                cScore = 0;
+            }
+            compScore.innerHTML = cScore;
+            totalScore.innerHTML = uScore;
+        } else {
+            contComputerCh.style.backgroundColor = "#111720";
+            computerCh.style.backgroundImage = "url(images/question.png)";
+
+        }
+    });
+});
 
 
 
