@@ -1,5 +1,5 @@
 let totalScore = document.querySelector(".score");
-let userCh = document.querySelector(".result");
+let gameResult = document.querySelector(".result");
 let resultChoice = document.querySelector(".result-text");
 let computerCh = document.querySelector(".election");
 let compScore = document.querySelector(".computer-score");
@@ -45,6 +45,7 @@ botones.forEach(function (boton) {
             if (uScore === 5 || cScore === 5) {
                 uScore = 0;
                 cScore = 0;
+                
             }
             compScore.innerHTML = cScore;
             totalScore.innerHTML = uScore;
@@ -68,10 +69,16 @@ botones.forEach(function (boton) {
 
 function partida(userChoice, pcChoice) {
     if (userChoice === pcChoice) {
+        gameResult.innerHTML = "Tie!"
+        resultChoice.innerHTML = `Both chose ${userChoice}`;
         return "Empate";
     } else if (userChoice === "paper" && pcChoice === "scissors" || userChoice === "scissors" && pcChoice === "rock" || userChoice === "rock" && pcChoice === "paper") {
+        gameResult.innerHTML = "You have lost!"
+        resultChoice.innerHTML = ` ${pcChoice} beats ${userChoice}`;
         return "you have lost " + pcChoice + " beats " + userChoice;
     } else if (pcChoice === "paper" && userChoice === "scissors" || pcChoice === "scissors" && userChoice === "rock" || pcChoice === "rock" && userChoice === "paper") {
+        gameResult.innerHTML = "You have won!"
+        resultChoice.innerHTML = `${userChoice} beats ${pcChoice}`;
         return "you have won " + userChoice + " beats " + pcChoice;
     }
 }
